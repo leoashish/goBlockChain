@@ -29,14 +29,18 @@ func (bcs *BlockchainServer) GetBlockChain() *block.BlockChain {
 		minersWallet := wallet.NewWallet()
 		bc = block.NewBlockChain(minersWallet.BlockChainAddress(), bcs.Port())
 		cache["blockchain"] = bc
+		log.Printf("private key %u", minersWallet.PrivateKey())
+		log.Printf("public key %u", minersWallet.PublicKey())
+		log.Printf("blockchain address %u", minersWallet.BlockChainAddress())
 	}
 	return bc
 }
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Hello, World!!")
+
+
+func (bcs *BlockchainServer) GetChain(w http.ResponseWriter, r *http.Request){
+	switch()
 }
 
 func (bcs *BlockchainServer) Run() {
-	http.HandleFunc("/", HelloWorld)
 	log.Fatal(http.ListenAndServe("localhost:"+strconv.Itoa(int(bcs.port)), nil))
 }
